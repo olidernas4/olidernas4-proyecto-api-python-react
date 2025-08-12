@@ -1,99 +1,77 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Login from './components/Login';
+import Register from './components/Register';
+import Dashboard from './components/Dashboard';
+import Profile from './components/Profile';
+import EstudiantesManager from './components/EstudiantesManager';
+import ProfesoresManager from './components/ProfesoresManager';
+import './App.css';
 
-function App() {
-  const [profesores, setProfesores] = useState([]);
-  const [nombre, setNombre] = useState('');
-  const [apellido, setApellido] = useState('');
-  const [email, setEmail] = useState('');
-  const [editId, setEditId] = useState(null);
-
-  useEffect(() => {
-    fetchProfesores();
-  }, []);
-
-  const fetchProfesores = async () => {
-    const response = await axios.get('http://127.0.0.1:8000/profesores/');
-    setProfesores(response.data);
+const App = () => {
+  // Función para verificar si el usuario está autenticado
+  const isAuthenticated = () => {
+    return localStorage.getItem('access_token') !== null;
   };
 
-  const createProfesor = async () => {
-    await axios.post('http://127.0.0.1:8000/profesores/', { nombre, apellido, email });
-    fetchProfesores();
-    setNombre('');
-    setApellido('');
-    setEmail('');
-  };
-
-  const updateProfesor = async () => {
-    await axios.put(`http://127.0.0.1:8000/profesores/${editId}`, { nombre, apellido, email });
-    fetchProfesores();
-    setNombre('');
-    setApellido('');
-    setEmail('');
-    setEditId(null);
-  };
-
-  const deleteProfesor = async (id) => {
-    await axios.delete(`http://127.0.0.1:8000/profesores/${id}`);
-    fetchProfesores();
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (editId) {
-      updateProfesor();
-    } else {
-      createProfesor();
-    }
-  };
-
-  const handleEdit = (profesor) => {
-    setNombre(profesor.nombre);
-    setApellido(profesor.apellido);
-    setEmail(profesor.email);
-    setEditId(profesor.id);
+  // Componente para proteger rutas
+  const ProtectedRoute = ({ children }) => {
+    return isAuthenticated() ? children : <Navigate to="/login" replace />;
   };
 
   return (
-    <div className="App">
-      <h1>Gestión de Profesores</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Nombre"
-          value={nombre}
-          onChange={(e) => setNombre(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Apellido"
-          value={apellido}
-          onChange={(e) => setApellido(e.target.value)}
-          required
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <button type="submit">{editId ? 'Actualizar' : 'Crear'}</button>
-      </form>
-      <ul>
-        {profesores.map((profesor) => (
-          <li key={profesor.id}>
-            {profesor.nombre} {profesor.apellido} ({profesor.email})
-            <button onClick={() => handleEdit(profesor)}>Editar</button>
-            <button onClick={() => deleteProfesor(profesor.id)}>Eliminar</button>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          {/* Rutas públicas */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          
+          {/* Ruta raíz - redirige al dashboard si está autenticado, sino al login */}
+          <Route 
+            path="/" 
+            element={
+              isAuthenticated() ? <Navigate to="/dashboard" replace /> : <Navigate to="/login" replace />
+            } 
+          />
+          
+          {/* Rutas protegidas */}
+          <Route 
+            path="/dashboard" 
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/profile" 
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/estudiantes" 
+            element={
+              <ProtectedRoute>
+                <EstudiantesManager />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/profesores" 
+            element={
+              <ProtectedRoute>
+                <ProfesoresManager />
+              </ProtectedRoute>
+            } 
+          />
+        </Routes>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
-

@@ -1,0 +1,16 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Iniciar API",
+			"type": "shell",
+			"command": "C:/Users/DELL/AppData/Local/Programs/Python/Python313/python.exe",
+			"args": [
+				"start.py"
+			],
+			"group": "build",
+			"isBackground": true,
+			"problemMatcher": []
+		}
+	]
+}

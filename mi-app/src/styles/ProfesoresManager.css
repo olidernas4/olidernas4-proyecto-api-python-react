@@ -1,0 +1,431 @@
+/* ProfesoresManager Styles */
+.profesores-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #f5f7fa;
+    min-height: 100vh;
+}
+
+.profesores-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    gap: 20px;
+}
+
+.back-btn {
+    padding: 10px 20px;
+    background-color: #667eea;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.back-btn:hover {
+    background-color: #5a6fd8;
+    transform: translateX(-3px);
+}
+
+.profesores-header h1 {
+    margin: 0;
+    color: #2c3e50;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+/* Controls */
+.profesores-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.search-section {
+    flex: 1;
+    max-width: 400px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e1e8ed;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.actions-section {
+    display: flex;
+    gap: 15px;
+}
+
+.refresh-btn, .add-btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.refresh-btn {
+    background-color: #28a745;
+    color: white;
+}
+
+.refresh-btn:hover {
+    background-color: #218838;
+}
+
+.refresh-btn:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
+
+.add-btn {
+    background-color: #667eea;
+    color: white;
+}
+
+.add-btn:hover {
+    background-color: #5a6fd8;
+}
+
+/* Form Container */
+.form-container {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+}
+
+.form-container h3 {
+    color: #2c3e50;
+    margin-bottom: 25px;
+    font-size: 20px;
+}
+
+.profesor-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 8px;
+    color: #2c3e50;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.form-input {
+    padding: 12px 15px;
+    border: 2px solid #e1e8ed;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.submit-btn {
+    padding: 12px 24px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #218838;
+}
+
+.cancel-btn {
+    padding: 12px 24px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    margin-right: 10px;
+}
+
+.cancel-btn:hover {
+    background-color: #5a6268;
+}
+
+/* Professors List */
+.profesores-list {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    overflow: hidden;
+}
+
+.list-header {
+    padding: 20px 30px;
+    border-bottom: 2px solid #e1e8ed;
+}
+
+.list-header h3 {
+    margin: 0;
+    color: #2c3e50;
+    font-size: 20px;
+}
+
+.profesores-grid {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.profesor-card {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.profesor-card:hover {
+    border-color: #17a2b8;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.profesor-avatar {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #17a2b8, #138496);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.profesor-info {
+    flex: 1;
+}
+
+.profesor-info h4 {
+    margin: 0 0 5px 0;
+    color: #2c3e50;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.profesor-email {
+    margin: 0 0 5px 0;
+    color: #17a2b8;
+    font-size: 14px;
+}
+
+.profesor-specialty {
+    margin: 0 0 5px 0;
+    color: #28a745;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.profesor-phone {
+    margin: 0 0 5px 0;
+    color: #7f8c8d;
+    font-size: 12px;
+}
+
+.profesor-experience {
+    margin: 0 0 5px 0;
+    color: #fd7e14;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.profesor-id {
+    margin: 0;
+    color: #95a5a6;
+    font-size: 11px;
+    font-style: italic;
+}
+
+.profesor-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.edit-btn, .delete-btn {
+    width: 35px;
+    height: 35px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.edit-btn {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.edit-btn:hover {
+    background-color: #e0a800;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+.empty-state {
+    padding: 60px 20px;
+    text-align: center;
+    color: #7f8c8d;
+    font-size: 16px;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px;
+    padding: 20px;
+}
+
+.page-btn {
+    padding: 10px 15px;
+    border: 2px solid #e1e8ed;
+    background-color: white;
+    color: #2c3e50;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    min-width: 40px;
+}
+
+.page-btn:hover {
+    border-color: #17a2b8;
+    color: #17a2b8;
+}
+
+.page-btn.active {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    color: white;
+}
+
+.page-btn:disabled {
+    background-color: #f8f9fa;
+    border-color: #e1e8ed;
+    color: #6c757d;
+    cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .profesores-container {
+        padding: 20px;
+    }
+    
+    .profesores-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .profesores-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .search-section {
+        max-width: none;
+    }
+    
+    .actions-section {
+        justify-content: center;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .profesores-grid {
+        grid-template-columns: 1fr;
+        padding: 15px;
+    }
+    
+    .profesor-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .profesor-actions {
+        margin-top: 15px;
+    }
+    
+    .pagination {
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+    
+    .page-btn {
+        padding: 8px 12px;
+        min-width: 35px;
+    }
+} 

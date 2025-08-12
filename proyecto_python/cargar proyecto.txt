@@ -1,0 +1,33 @@
+ pip install -r requirements.txt
+uvicorn main:app --reload
+pip install python-jose
+
+El error que estás viendo se debe a que FastAPI necesita la biblioteca python-multipart para manejar datos de formularios en formato multipart/form-data, que es el formato que se utiliza para enviar archivos y datos de formulario, especialmente cuando se trabaja con autenticación utilizando OAuth2PasswordRequestForm.
+
+Solución
+Para resolver este problema, simplemente necesitas instalar la biblioteca python-multipart. Puedes hacerlo ejecutando el siguiente comando en tu terminal:
+
+pip install python-multipart
+
+institutoenca24
+
+
+pip install fastapi uvicorn
+uvicorn main:app --reload
+
+
+# 1. Crear una carpeta para tu proyecto
+mkdir mi_proyecto_fastapi
+cd mi_proyecto_fastapi
+
+# 2. Crear un entorno virtual
+python -m venv .venv
+
+# 3. Activar el entorno virtual
+.venv\Scripts\Activate.ps1
+
+# 4. Instalar FastAPI y uvicorn
+pip install fastapi uvicorn
+
+# 5. Crear requirements.txt
+pip freeze > requirements.txt
